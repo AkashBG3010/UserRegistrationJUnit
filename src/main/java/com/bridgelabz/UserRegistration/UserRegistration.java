@@ -6,9 +6,12 @@ public class UserRegistration {
 
 	private static final String FIRST_NAME_REGEX = "^[A-Z][a-z]{2,}";
 	private static final String LAST_NAME_REGEX = "^[A-Z][a-z]{2,}$";
+	private static final String EMAIL_REGEX = "^[a-zA-Z0-9_-]+(?:\\.[a-zA-Z0-9_+-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
 	
 	static boolean isFirstNameValid;
 	static boolean isLastNameValid;
+	static boolean isEmailValid;
+	
 	
 	public boolean validateFirstName(String firstName) {
 		isFirstNameValid= Pattern.matches(FIRST_NAME_REGEX,firstName);
@@ -18,6 +21,7 @@ public class UserRegistration {
 		}
 		return Pattern.matches(FIRST_NAME_REGEX,firstName);
 	}
+	
 	public boolean validateLastName(String lastName) {
 		isLastNameValid= Pattern.matches(LAST_NAME_REGEX,lastName);
 		
@@ -25,5 +29,14 @@ public class UserRegistration {
 			System.out.println("Entered 'Last name' is invalid! Please try again...");
 		}
 		return Pattern.matches(LAST_NAME_REGEX,lastName);
+	}
+	
+	public boolean validateEmail(String email) {
+		isEmailValid= Pattern.matches(EMAIL_REGEX,email);
+		
+		if(!isEmailValid) {
+			System.out.println("Entered 'Email' is invalid! Please try again...");
+		}
+		return Pattern.matches(EMAIL_REGEX,email);
 	}
 }
