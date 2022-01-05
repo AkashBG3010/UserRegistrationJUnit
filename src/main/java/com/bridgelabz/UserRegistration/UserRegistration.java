@@ -1,5 +1,6 @@
 package com.bridgelabz.UserRegistration;
 
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class UserRegistration {
@@ -60,5 +61,10 @@ public class UserRegistration {
 			System.out.println("Entered 'Password' is invalid! Please try again...");
 		}
 		return Pattern.matches(PASSWORD_REGEX,password);
+	}
+	public void register(UserDetails userDetails, Scanner scanner) {
+		if(isFirstNameValid && isLastNameValid && isEmailValid && isPhoneNumberValid && isPasswordValid) {
+			System.out.println("Hi Welcome! You have Successfully Registered");
+		}	
 	}
 }
