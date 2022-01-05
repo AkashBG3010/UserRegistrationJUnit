@@ -14,10 +14,13 @@ public class UserRegistrationMain {
 		String lastName = scanner.next();
 		System.out.println("Please enter Your Email: ");
 		String email = scanner.next();
+		System.out.println("Please enter Your PhoneNumber: ");
+		String phoneNumber = scanner.next();
 		
 		UserRegistration registration = new UserRegistration();
 		registration.validateFirstName(firstName);
 		registration.validateLastName(lastName);
 		registration.validateEmail(email);
+		registration.validatePhoneNumber(phoneNumber);
 	}
 }
