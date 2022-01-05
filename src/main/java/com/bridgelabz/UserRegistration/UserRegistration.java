@@ -9,6 +9,7 @@ public class UserRegistration {
 	static boolean isFirstNameValid;
 	
 	public boolean validateFirstName(String firstName) {
+		
 		isFirstNameValid= Pattern.matches(FIRST_NAME_REGEX,firstName);
 		
 		if(!isFirstNameValid) {

@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class UserDetailsTest {
-	
+	 
 	@Test
 	public void firstName_WhenCorrect_ShouldReturnTrue() {
 		UserRegistration register = new UserRegistration();
