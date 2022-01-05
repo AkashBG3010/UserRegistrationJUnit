@@ -16,11 +16,14 @@ public class UserRegistrationMain {
 		String email = scanner.next();
 		System.out.println("Please enter Your PhoneNumber: ");
 		String phoneNumber = scanner.next();
+		System.out.println("Please enter Your Password: ");
+		String password = scanner.next();
 		
 		UserRegistration registration = new UserRegistration();
 		registration.validateFirstName(firstName);
 		registration.validateLastName(lastName);
 		registration.validateEmail(email);
 		registration.validatePhoneNumber(phoneNumber);
+		registration.validatePassword(password);
 	}
 }

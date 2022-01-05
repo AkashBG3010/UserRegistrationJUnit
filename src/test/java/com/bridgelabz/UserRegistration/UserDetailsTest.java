@@ -71,7 +71,21 @@ public class UserDetailsTest {
 	@Test
 	public void PhoneNumber_WhenWrong_ShouldReturnFalse() {
 		UserRegistration register = new UserRegistration();
-		boolean isValid = register.validatePhoneNumber("91 987654321");
+		boolean isValid = register.validatePhoneNumber("91987654321");
+		Assert.assertFalse(isValid);
+	}
+	
+	@Test
+	public void Password_WhenCorrect_ShouldReturnTrue() {
+		UserRegistration register = new UserRegistration();
+		boolean isValid = register.validatePassword("123456@a");
+		Assert.assertTrue(isValid);
+	}
+	
+	@Test
+	public void Password_WhenWrong_ShouldReturnFalse() {
+		UserRegistration register = new UserRegistration();
+		boolean isValid = register.validatePassword("123@a");
 		Assert.assertFalse(isValid);
 	}
 }
