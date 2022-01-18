@@ -2,9 +2,9 @@ package com.bridgelabz.UserRegistration;
 
 import java.util.Scanner;
 
-public class UserRegistrationMain {
+public class UserRegistrationMain extends DetailsException {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FirstNameException, LastNameException, EmailException, PhoneNumberException, PasswordException {
 
 		Scanner scanner = new Scanner(System.in);
 		
@@ -25,5 +25,7 @@ public class UserRegistrationMain {
 		registration.validateEmail(email);
 		registration.validatePhoneNumber(phoneNumber);
 		registration.validatePassword(password);
+		
+		scanner.close();
 	}
 }

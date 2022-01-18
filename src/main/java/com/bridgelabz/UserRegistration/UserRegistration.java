@@ -3,11 +3,17 @@ package com.bridgelabz.UserRegistration;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import com.bridgelabz.UserRegistration.DetailsException.EmailException;
+import com.bridgelabz.UserRegistration.DetailsException.FirstNameException;
+import com.bridgelabz.UserRegistration.DetailsException.LastNameException;
+import com.bridgelabz.UserRegistration.DetailsException.PasswordException;
+import com.bridgelabz.UserRegistration.DetailsException.PhoneNumberException;
+
 public class UserRegistration {
 
 	private static final String FIRST_NAME_REGEX = "^[A-Z][a-z]{2,}";
 	private static final String LAST_NAME_REGEX = "^[A-Z][a-z]{2,}$";
-	private static final String EMAIL_REGEX = "^[a-zA-Z0-9_-]+(?:\\.[a-zA-Z0-9_+-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
+	private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+-]+(?:\\.[a-zA-Z0-9_+-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]{2,})*(?![a-zA-Z0-9.]+)*.(?![a-zA-Z0-9-]{2,}+)*$";
 	private static final String PHONE_NUMBER_REGEX = "^[0-9]{2}[ ]{1}[0-9]{10}";
 	private static final String PASSWORD_REGEX = "(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_-])[a-zA-Z0-9].{8,}$";
 	
@@ -18,53 +24,83 @@ public class UserRegistration {
 	static boolean isPasswordValid;
 	
 	
-	public boolean validateFirstName(String firstName) {
-		isFirstNameValid = Pattern.matches(FIRST_NAME_REGEX,firstName);
-		
+	public boolean validateFirstName(String firstName) throws FirstNameException {
+		try {
+		isFirstNameValid= Pattern.matches(FIRST_NAME_REGEX,firstName);
 		if(!isFirstNameValid) {
-			System.out.println("Entered 'first name' is invalid! Please try again...");
+			System.out.println("First Name is invalid...Please enter proper first name");
 		}
-		return Pattern.matches(FIRST_NAME_REGEX,firstName);
+		if(firstName.length() == 0) {
+			throw new FirstNameException(ExceptionType.ENTERED_EMPTY, "Enter Proper Message. EMPTY Not Allowed");
+
+		}
+		}
+		catch (NullPointerException e) {
+			throw new FirstNameException(ExceptionType.ENTERED_NULL, "Enter Proper Message. NULL Not Allowed");
+		}
+		return isFirstNameValid;
 	}
 	
-	public boolean validateLastName(String lastName) {
-		isLastNameValid = Pattern.matches(LAST_NAME_REGEX,lastName);
-		
+	public boolean validateLastName(String lastName)throws LastNameException{
+		try {
+		isLastNameValid= Pattern.matches(LAST_NAME_REGEX, lastName);
 		if(!isLastNameValid) {
-			System.out.println("Entered 'Last name' is invalid! Please try again...");
+			System.out.println("Last Name is invalid...Please enter proper last name");
 		}
-		return Pattern.matches(LAST_NAME_REGEX,lastName);
+		if(lastName.length() == 0) {
+			throw new LastNameException(ExceptionType1.ENTERED_EMPTY, "Enter Proper Message. EMPTY Not Allowed");
+
+		}
+		}
+		catch (NullPointerException e) {
+			throw new LastNameException(ExceptionType1.ENTERED_NULL, "Enter Proper Message. NULL Not Allowed");
+		}
+		return isLastNameValid;
 	}
 	
-	public boolean validateEmail(String email) {
-		isEmailValid = Pattern.matches(EMAIL_REGEX,email);
-		
-		if(!isEmailValid) {
-			System.out.println("Entered 'Email' is invalid! Please try again...");
+	public boolean validateEmail(String mail) throws EmailException {
+		try {
+		isMailValid= Pattern.matches(EMAIL_REGEX, mail);
+		if(!isMailValid) {
+			System.out.println("E-mail is invalid...Please enter e-mail");
 		}
-		return Pattern.matches(EMAIL_REGEX,email);
-	}
-	
-	public boolean validatePhoneNumber(String phoneNumber) {
-		isPhoneNumberValid = Pattern.matches(PHONE_NUMBER_REGEX,phoneNumber);
-		
-		if(!isPhoneNumberValid) {
-			System.out.println("Entered 'PhoneNumber' is invalid! Please try again...");
+		if(mail.length() == 0) {
+			throw new EmailException(ExceptionType2.ENTERED_EMPTY, "Enter Proper Message. EMPTY Not Allowed");
 		}
-		return Pattern.matches(PHONE_NUMBER_REGEX,phoneNumber);
+		}
+		catch (NullPointerException e) {
+			throw new EmailException(ExceptionType2.ENTERED_NULL, "Enter Proper Message. NULL Not Allowed");
+		}
+		return isMailValid;
 	}
-	
-	public boolean validatePassword(String password) {
-		isPasswordValid = Pattern.matches(PASSWORD_REGEX,password);
-		
+	public boolean validatePhoneNumber(String number) throws PhoneNumberException {
+		try {
+		boolean isNumberValid= Pattern.matches(PHONE_NUMBER_REGEX, number);
+		if(!isNumberValid) {
+			System.out.println("Phone Number is invalid...Please enter proper phone-number");
+		}
+		if(number.length() == 0) {
+			throw new PhoneNumberException(ExceptionType3.ENTERED_EMPTY, "Enter Proper Message. EMPTY Not Allowed");
+		}
+		}
+		catch (NullPointerException e) {
+			throw new PhoneNumberException(ExceptionType3.ENTERED_NULL, "Enter Proper Message. NULL Not Allowed");
+		}
+		return isNumberValid;
+	}
+	public boolean validatePassword(String password) throws PasswordException {
+		try {
+		isPasswordValid= Pattern.matches(PASSWORD_REGEX, password);
 		if(!isPasswordValid) {
-			System.out.println("Entered 'Password' is invalid! Please try again...");
+			System.out.println("Password is invalid...Please enter proper password");
 		}
-		return Pattern.matches(PASSWORD_REGEX,password);
-	}
-	public void register(UserDetails userDetails, Scanner scanner) {
-		if(isFirstNameValid && isLastNameValid && isEmailValid && isPhoneNumberValid && isPasswordValid) {
-			System.out.println("Hi Welcome! You have Successfully Registered");
-		}	
+		if(password.length() == 0) {
+			throw new PasswordException(ExceptionType4.ENTERED_EMPTY, "Enter Proper Message. EMPTY Not Allowed");
+		}
+		}
+		catch (NullPointerException e) {
+			throw new PasswordException(ExceptionType4.ENTERED_NULL, "Enter Proper Message. NULL Not Allowed");
+		}
+		return isPasswordValid;
 	}
 }
